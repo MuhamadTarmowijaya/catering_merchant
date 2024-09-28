@@ -3,6 +3,6 @@
 @section('content')
     <div class="container">
         <h1>Dashboard Merchant</h1>
-        <a href="{{ route('menus.index') }}" class="btn btn-primary">Manage Menus</a>
+        <p>Selamat datang di dashboard. Di sini Anda dapat mengelola profil dan menu Anda.</p>
     </div>
 @endsection

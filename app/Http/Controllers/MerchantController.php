@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Merchant;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class MerchantController extends Controller
 {
@@ -27,10 +29,14 @@ class MerchantController extends Controller
         ]);
 
         $merchant = Auth::user()->merchant;
-        $merchant->update($request->all());
+        if (!$merchant) {
+            $merchant = new Merchant();
+            $merchant->user_id = Auth::id();
+        }
+
+        $merchant->fill($request->all());
+        $merchant->save();
 
         return redirect()->back()->with('success', 'Profile updated successfully!');
     }
-
-
 }
